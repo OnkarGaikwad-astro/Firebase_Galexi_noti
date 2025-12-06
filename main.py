@@ -26,6 +26,14 @@ def get_access_token():
 def home():
     return {"status": "running"}
 
+
+@app.get("/check")
+def check():
+    import os
+    return {"exists": os.path.isfile(SERVICE_ACCOUNT_FILE)}
+
+
+
 @app.post("/send")
 def send_notification(data: PushData):
     access_token = get_access_token()
